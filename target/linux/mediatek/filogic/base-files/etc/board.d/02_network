@@ -50,6 +50,7 @@ mediatek_setup_interfaces()
 		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 eth1" "wan eth2"
 		;;
 	cmcc,rax3000m|\
+	h3c,magic-nx30-pro-nmbm|\
 	h3c,magic-nx30-pro|\
 	nokia,ea0326gmp|\
 	zbtlink,zbt-z8103ax)
@@ -157,6 +158,7 @@ mediatek_setup_macs()
 		;;
 		esac
 		;;
+	h3c,magic-nx30-pro-nmbm|\
 	h3c,magic-nx30-pro)
 		wan_mac=$(mtd_get_mac_ascii pdt_data_1 ethaddr)
 		lan_mac=$(macaddr_add "$wan_mac" 1)
