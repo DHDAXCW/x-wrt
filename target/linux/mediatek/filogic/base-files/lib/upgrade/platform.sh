@@ -183,6 +183,7 @@ platform_do_upgrade() {
 	yuncore,ax835)
 		default_do_upgrade "$1"
 		;;
+	cmcc,rax3000m-emmc-ubootlayout|\
 	glinet,gl-mt2500|\
 	glinet,gl-mt6000|\
 	glinet,gl-x3000|\
@@ -283,6 +284,7 @@ platform_check_image() {
 		}
 		return 0
 		;;
+	cmcc,rax3000m-emmc-ubootlayout|\
 	tenbay,ms3000k|\
 	tenbay,wr3000k-gsw-emmc-nor)
 		return 0
@@ -316,6 +318,7 @@ platform_copy_config() {
 		esac
 		;;
 	acer,predator-w6|\
+	cmcc,rax3000m-emmc-ubootlayout|\
 	glinet,gl-mt2500|\
 	glinet,gl-mt6000|\
 	glinet,gl-x3000|\
