@@ -1,6 +1,7 @@
 . /lib/functions/system.sh
 
 preinit_set_mac_address() {
+	ip link set eth0 down; ip link set eth1 down
 	case $(board_name) in
 	acer,predator-w6)
 		key_path="/var/qcidata/data"
@@ -22,6 +23,16 @@ preinit_set_mac_address() {
 		ip link set dev eth0 address "$addr"
 		addr=$(mmc_get_mac_binary factory 0x2a)
 		ip link set dev eth1 address "$addr"
+		;;
+	cmcc,rax3000m)
+		case "$(cmdline_get_var root)" in
+		/dev/mmc*)
+			addr=$(mmc_get_mac_binary factory 0x24)
+			ip link set dev eth0 address "$addr"
+			addr=$(mmc_get_mac_binary factory 0x2a)
+			ip link set dev eth1 address "$addr"
+			;;
+		esac
 		;;
 	mercusys,mr90x-v1|\
 	tplink,re6000xd)
@@ -50,6 +61,7 @@ preinit_set_mac_address() {
 	*)
 		;;
 	esac
+	ip link set eth0 up; ip link set eth1 up
 }
 
 boot_hook_add preinit_main preinit_set_mac_address
